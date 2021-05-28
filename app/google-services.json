@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "35848740507",
+    "project_id": "anti-covid-1acb2",
+    "storage_bucket": "anti-covid-1acb2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35848740507:android:6c036a1959ba6af8d8703e",
+        "android_client_info": {
+          "package_name": "com.e17cn2.anti_covid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35848740507-9jcememsrvkit3das2m5gbgn7vi0ln86.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBw2zz7PS5hghXBsxWMeL-vtiIJ7TybbBE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "35848740507-9jcememsrvkit3das2m5gbgn7vi0ln86.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
