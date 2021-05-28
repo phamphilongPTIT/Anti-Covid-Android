@@ -96,6 +96,7 @@
         android:text="Tôi cam đoan những thông tin bên trên là đúng sự thật.
         \nNếu sai tôi xin chịu trách nhiệm trước pháp luật."
         android:textStyle="italic"
+        android:textColor="#A11515"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
