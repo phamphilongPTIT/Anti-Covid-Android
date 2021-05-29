@@ -41,9 +41,14 @@ public class PhieuKhaiBaoYTe extends AppCompatActivity {
             }
         });
 
-        if (cbSendKBYT.isChecked()){
-            btSend.setEnabled(true);
-        }
+        cbSendKBYT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cbSendKBYT.isChecked()){
+                    btSend.setEnabled(true);
+                }
+            }
+        });
     }
 
     public void init(){

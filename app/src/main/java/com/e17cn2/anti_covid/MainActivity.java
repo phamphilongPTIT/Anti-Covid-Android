@@ -60,6 +60,12 @@ public class MainActivity extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             public void onComplete(@NonNull Task<Void> task) {
                                 // ...
+                                startActivityForResult(
+                                        AuthUI.getInstance()
+                                                .createSignInIntentBuilder()
+                                                .setAvailableProviders(providers)
+                                                .build(),
+                                        RC_SIGN_IN);
                             }
                         });
             }
