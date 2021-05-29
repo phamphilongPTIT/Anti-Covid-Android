@@ -30,14 +30,14 @@ public class PhieuKhaiBaoYTe extends AppCompatActivity {
         txtNgayDi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chosenDay();
+                chosenNgayDi();
             }
         });
 
         txtNgayVe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chosenDay();
+                chosenNgayVe();
             }
         });
 
@@ -58,7 +58,7 @@ public class PhieuKhaiBaoYTe extends AppCompatActivity {
         btSend = findViewById(R.id.btGuiKBYT);
     }
 
-    private void chosenDay(){
+    private void chosenNgayDi(){
 
         Calendar calendar = Calendar.getInstance();
         int ngay = calendar.get(Calendar.DATE);
@@ -69,6 +69,21 @@ public class PhieuKhaiBaoYTe extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 txtNgayDi.setText(dayOfMonth+"/"+month+"/"+year);
+            }
+        },nam,thang,ngay);
+        datePickerDialog.show();
+    }
+
+    private void chosenNgayVe(){
+
+        Calendar calendar = Calendar.getInstance();
+        int ngay = calendar.get(Calendar.DATE);
+        int thang = calendar.get(Calendar.MONTH);
+        int nam = calendar.get(Calendar.YEAR);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 txtNgayVe.setText(dayOfMonth+"/"+month+"/"+year);
             }
         },nam,thang,ngay);
