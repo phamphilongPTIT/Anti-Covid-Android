@@ -10,12 +10,16 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.e17cn2.anti_covid.model.Declaration;
 
 import java.util.Calendar;
 
 public class PhieuKhaiBaoYTe extends AppCompatActivity {
-
-    private EditText txtNgayDi, txtNgayVe;
+    private SQLiteDeclaration sqLiteDeclaration;
+    private EditText txtNgayDi, txtNgayVe, txtDestination, txtNoiDi;
     private CheckBox cbSendKBYT;
     private Button btSend;
 
@@ -26,6 +30,7 @@ public class PhieuKhaiBaoYTe extends AppCompatActivity {
         setContentView(R.layout.activity_kbyt);
         init();
         btSend.setEnabled(false);
+        sqLiteDeclaration = new SQLiteDeclaration(this);
 
         txtNgayDi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +51,17 @@ public class PhieuKhaiBaoYTe extends AppCompatActivity {
             public void onClick(View v) {
                 if (cbSendKBYT.isChecked()){
                     btSend.setEnabled(true);
+
+                    try {
+                        String txtDateDi = txtNgayDi.getText().toString();
+                        String txtDateVe = txtNgayVe.getText().toString();
+                        String noiDen = txtDestination.getText().toString();
+                        String noiDi = txtNoiDi.getText().toString();
+                        Declaration declaration = new Declaration(noiDi,txtDateDi, txtDateVe, noiDen);
+                        sqLiteDeclaration.addDeclaration(declaration);
+                    }catch (NumberFormatException e){
+                        System.out.println(e + "");
+                    }
                 }
             }
         });
@@ -54,8 +70,11 @@ public class PhieuKhaiBaoYTe extends AppCompatActivity {
     public void init(){
         txtNgayDi = findViewById(R.id.txtNgayDi);
         txtNgayVe = findViewById(R.id.txtNgayVe);
+        txtNoiDi = findViewById(R.id.txtDiemDi);
+        txtDestination = findViewById(R.id.txtDiemDen);
         cbSendKBYT = findViewById(R.id.cbXacNhan);
         btSend = findViewById(R.id.btGuiKBYT);
+
     }
 
     private void chosenNgayDi(){

@@ -2,6 +2,9 @@ package com.e17cn2.anti_covid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -16,6 +19,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.e17cn2.anti_covid.model.Declaration;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.github.mikephil.charting.charts.CombinedChart;
@@ -31,6 +35,7 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -39,13 +44,12 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-
-    private Button btLogout;
+public class MainActivity extends AppCompatActivity  {
+    private BottomNavigationView navigationView;
+    private ViewPager viewPager;
+    private FargmentNavigationAdapter adapter;
 
     private int RC_SIGN_IN = 1999;
-
-    private CombinedChart mChart;
 
     // Choose authentication providers
     List<AuthUI.IdpConfig> providers = Arrays.asList(
@@ -57,9 +61,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btLogout = findViewById(R.id.idLogout);
-        mChart = (CombinedChart) findViewById(R.id.combinedChart);
-        outChart();
 
 // Create and launch sign-in intent
         startActivityForResult(
@@ -69,27 +70,31 @@ public class MainActivity extends AppCompatActivity {
                         .build(),
                 RC_SIGN_IN);
 
-
-        btLogout.setOnClickListener(new View.OnClickListener() {
+        viewPager=findViewById(R.id.viewPager);
+        navigationView=findViewById(R.id.navigation);
+        adapter=new FargmentNavigationAdapter(getSupportFragmentManager(),
+                FargmentNavigationAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPager.setAdapter(adapter);
+        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                AuthUI.getInstance()
-                        .signOut(MainActivity.this)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            public void onComplete(@NonNull Task<Void> task) {
-                                // ...
-                                startActivityForResult(
-                                        AuthUI.getInstance()
-                                                .createSignInIntentBuilder()
-                                                .setAvailableProviders(providers)
-                                                .build(),
-                                        RC_SIGN_IN);
-                            }
-                        });
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.mHome:viewPager.setCurrentItem(0);
+                        break;
+                    case R.id.mList:viewPager.setCurrentItem(1);
+                        break;
+                    case R.id.mCorona:viewPager.setCurrentItem(2);
+                        break;
+                    case R.id.mHealth:viewPager.setCurrentItem(3);
+                        break;
+                }
+                return true;
             }
         });
 
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -121,7 +126,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuKBYT:
                 startActivity(new Intent(this, PhieuKhaiBaoYTe.class));
                 break;
-            // action with ID action_settings was selected
+            case R.id.menuQRcode:
+                startActivity(new Intent(this, QrCode.class));
+                break;
             case R.id.menuLogout:
                 AuthUI.getInstance()
                         .signOut(MainActivity.this)
@@ -141,136 +148,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return true;
-    }
-
-    private void outChart(){
-
-        float[] point = {1,2,3,4};
-        float[] point1 = {6,7,8,9};
-        final List<String> semesterName = new ArrayList<>();
-        semesterName.add("A");
-        semesterName.add("B");
-        semesterName.add("C");
-
-//        for (int i=0;i<list.size();i++)
-//            for (int j=i+1;j<list.size();j++)
-//                if (list.get(i).getSemester().getName().equals(list.get(j).getSemester().getName()))
-//                    list.remove(j);
-//
-//        int d=-1;
-//        for (StudentPointModel studentPointModel:list) {
-//            d++;
-//            semesterName.add(studentPointModel.getSemester().getName());
-//            point[d]= (float) ((float) (studentPointModel.getAvg())/2.5);
-//        }
-
-        mChart.getDescription().setEnabled(false);
-        mChart.setBackgroundColor(Color.WHITE);
-        mChart.setDrawGridBackground(false);
-        mChart.setDrawBarShadow(false);
-        mChart.setHighlightFullBarEnabled(false);
-//        mChart.setOnChartValueSelectedListener(this);
-
-        YAxis rightAxis = mChart.getAxisRight();
-        rightAxis.setDrawGridLines(false);
-        rightAxis.setAxisMinimum(6f);
-
-        YAxis leftAxis = mChart.getAxisLeft();
-        leftAxis.setDrawGridLines(false);
-        leftAxis.setAxisMinimum(2f);
-
-        XAxis xAxis = mChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setAxisMinimum(0f);
-        xAxis.setGranularity(1f);
-        xAxis.setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getFormattedValue(float value) {
-                return semesterName.get((int) value % semesterName.size());
-            }
-        });
-
-        CombinedData data = new CombinedData();
-        LineData lineDatas = new LineData();
-        lineDatas.addDataSet((ILineDataSet) dataChart(Color.RED,point,2));
-        lineDatas.addDataSet((ILineDataSet) dataChart2(Color.BLUE,point1,2));
-
-        data.setData(lineDatas);
-
-        xAxis.setAxisMaximum(data.getXMax() + 0.25f);
-
-        mChart.setData(data);
-        mChart.invalidate();
-    }
-
-    public void onValueSelected(Entry e, Highlight h) {
-        Toast.makeText(this, "Value: " + e.getY() + ", index: "
-                + h.getX()
-                + ", DataSet index: "
-                + h.getDataSetIndex(), Toast.LENGTH_SHORT).show();
-    }
-
-    public void onNothingSelected() {
-
-    }
-    private static DataSet dataChart(int textColor, float [] data, int size) {
-
-        LineData d = new LineData();
-
-
-
-        ArrayList<Entry> entries = new ArrayList<Entry>();
-
-        for (int index = 0; index <=size; index++) {
-            entries.add(new Entry(index, data[index]));
-        }
-
-        LineDataSet set = new LineDataSet(entries, "Point");
-        set.setColor(textColor);
-        set.setLineWidth(3f);
-        set.setCircleColor(textColor);
-        set.setCircleRadius(5f);
-        set.setFillColor(textColor);
-//        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-        set.setDrawValues(true);
-        set.setValueTextSize(10f);
-        set.setValueTextColor(textColor);
-
-        set.setAxisDependency(YAxis.AxisDependency.LEFT);
-        d.addDataSet(set);
-
-        return set;
-    }
-
-    private static DataSet dataChart2(int textColor, float [] data, int size) {
-
-        LineData d = new LineData();
-
-
-
-        ArrayList<Entry> entries = new ArrayList<Entry>();
-
-        for (int index = 0; index <=size; index++) {
-            entries.add(new Entry(index, data[index]));
-        }
-
-        LineDataSet set = new LineDataSet(entries, "HELLO");
-        set.setColor(textColor);
-        set.setLineWidth(3f);
-        set.setCircleColor(textColor);
-        set.setCircleRadius(5f);
-        set.setFillColor(textColor);
-//        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-        set.setDrawValues(true);
-        set.setValueTextSize(10f);
-        set.setValueTextColor(textColor);
-
-        set.setAxisDependency(YAxis.AxisDependency.LEFT);
-        d.addDataSet(set);
-
-        return set;
     }
 
 }
