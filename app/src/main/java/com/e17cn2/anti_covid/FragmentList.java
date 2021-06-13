@@ -1,20 +1,28 @@
 package com.e17cn2.anti_covid;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.e17cn2.anti_covid.model.Declaration;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -23,13 +31,17 @@ import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentList extends Fragment {
+public class FragmentList extends Fragment implements TextWatcher {
 
     private RecyclerView recycleView;
     private RecycleViewAdapter recycleViewAdapter;
     private SQLiteDeclaration sqLiteDeclaration;
     private Button btGetAll, btSearch;
-    private EditText txtSearch;
+    private AutoCompleteTextView txtSearch;
+    private String[] list;
+    private FloatingActionButton bt;
+
+
 
     public FragmentList() {
         // Required empty public constructor
@@ -45,10 +57,22 @@ public class FragmentList extends Fragment {
         btSearch = view.findViewById(R.id.btSearch);
         txtSearch = view.findViewById(R.id.txtTimNoiDen);
         recycleView = view.findViewById(R.id.recyclerview);
+        bt= view.findViewById(R.id.fab);
         recycleView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recycleViewAdapter = new RecycleViewAdapter();
         recycleView.setAdapter(recycleViewAdapter);
         sqLiteDeclaration = new SQLiteDeclaration(requireContext());
+        list=getResources().getStringArray(R.array.auto);
+        txtSearch.setAdapter(new ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1,list));
+        txtSearch.addTextChangedListener(this);
+
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(requireActivity(), PhieuKhaiBaoYTe.class));
+            }
+        });
+
 
         btGetAll.setOnClickListener(v -> {
             List<Declaration> declarations = sqLiteDeclaration.getAllDeclaration();
@@ -78,4 +102,20 @@ public class FragmentList extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
+    }
+
 }

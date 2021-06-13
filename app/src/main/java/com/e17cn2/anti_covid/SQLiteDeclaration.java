@@ -27,6 +27,7 @@ public class SQLiteDeclaration extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE declarations(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "phone TEXT," +
                 "arrivalDate TEXT," +
                 "returnDate TEXT," +
                 "destination TEXT," +
@@ -40,8 +41,8 @@ public class SQLiteDeclaration extends SQLiteOpenHelper {
     }
 
     public void addDeclaration(Declaration declaration){
-        String sql = "INSERT INTO declarations(arrivalDate,returnDate,destination,noiDi) VALUES(?,?,?,?)";
-        String[] args = {declaration.getArrivalDate(),declaration.getReturnDate(),declaration.getDestination(), declaration.getNoiDi()};
+        String sql = "INSERT INTO declarations(phone,arrivalDate,returnDate,destination,noiDi) VALUES(?,?,?,?,?)";
+        String[] args = {declaration.getPhoneNumber(),declaration.getArrivalDate(),declaration.getReturnDate(),declaration.getDestination(), declaration.getNoiDi()};
         SQLiteDatabase statement = getWritableDatabase();
         statement.execSQL(sql, args);
     }
@@ -52,11 +53,12 @@ public class SQLiteDeclaration extends SQLiteOpenHelper {
         Cursor resultSet = statement.query("declarations", null, null, null, null, null, null);
         while (resultSet != null && resultSet.moveToNext()){
             int id = resultSet.getInt(0);
-            String arrivalDate = resultSet.getString(1);
-            String returnDate = resultSet.getString(2);
-            String destination = resultSet.getString(3);
-            String noiDi = resultSet.getString(4);
-            declarations.add(new Declaration(id,noiDi,arrivalDate,returnDate,destination));
+            String phone = resultSet.getString(1);
+            String arrivalDate = resultSet.getString(2);
+            String returnDate = resultSet.getString(3);
+            String destination = resultSet.getString(4);
+            String noiDi = resultSet.getString(5);
+            declarations.add(new Declaration(id,phone,noiDi,arrivalDate,returnDate,destination));
         }
         return declarations;
     }
@@ -104,13 +106,14 @@ public class SQLiteDeclaration extends SQLiteOpenHelper {
         Cursor cursor = statement.query("declarations", null, whereClause, whereArgs, null, null, null);
         while (cursor != null && cursor.moveToNext()) {
             int id = cursor.getInt(0);
-            String arrivalDate = cursor.getString(1);
-            String returnDate = cursor.getString(2);
-            String destination = cursor.getString(3);
-            String noiDi = cursor.getString(4);
+            String phone = cursor.getString(1);
+            String arrivalDate = cursor.getString(2);
+            String returnDate = cursor.getString(3);
+            String destination = cursor.getString(4);
+            String noiDi = cursor.getString(5);
 
 
-            declarations.add(new Declaration(id,noiDi,arrivalDate,returnDate,destination));
+            declarations.add(new Declaration(id,phone,noiDi,arrivalDate,returnDate,destination));
         }
         cursor.close();
         return declarations;

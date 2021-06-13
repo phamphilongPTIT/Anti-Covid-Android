@@ -43,7 +43,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<com.e17cn2.anti_cov
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         Declaration declaration = list.get(position);
-        holder.idMaKBYT.setText("Mã số KBYT: "+String.valueOf(declaration.getId()));
+        holder.idMaKBYT.setText("Mã số KBYT: "+String.valueOf(declaration.getId())+" - SĐT: "+String.valueOf(declaration.getPhoneNumber())+"");
         holder.idNoiDi.setText(declaration.getNoiDi()+"->");
         holder.idNoiDen.setText(declaration.getDestination());
         holder.idImg.setImageResource(R.drawable.logo_byt);

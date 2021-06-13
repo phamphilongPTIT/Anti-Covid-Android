@@ -33,16 +33,16 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_width="281dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="48dp"
         android:text="Nếu có điều gì thắc mắc, vui lòng liên hệ trực tiếp
         \n đường dây nóng: 0967856789"
         android:textColor="#9C1A1E"
         android:textSize="15sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgQrCode" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,7 +22,8 @@ public class QrCode extends AppCompatActivity {
     private void init(){
          imgQrCode = (ImageView) findViewById(R.id.imgQrCode);
 
-        Glide.with(this).load("http://api.qrserver.com/v1/create-qr-code/?data=Hello%0ANguyen&size=200x200").into(imgQrCode);
+        Glide.with(this).load("http://api.qrserver.com/v1/create-qr-code/?data=Nguyễn Văn Hoàng%0ASĐT:0989898989%0A" +
+                "Mũi 1: Astrazeneca%0AMũi 1: Astrazeneca%0AĐịa điểm: Bệnh Viện 103&size=200x200").into(imgQrCode);
     }
 
 }

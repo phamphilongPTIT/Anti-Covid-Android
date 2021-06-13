@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Anti-Covid</string>
+    <string-array name="auto">
+        <item>Hà Nội</item>
+        <item>Hà Giang</item>
+        <item>Hải Dương</item>
+        <item>Hải Phòng</item>
+        <item>Quảng Ninh</item>
+        <item>Vĩnh Phúc</item>
+        <item>Bắc Giang</item>
+        <item>Thái Bình</item>
+        <item>Nam Định</item>
+        <item>Hồ Chí Minh</item>
+        <item>Đà Nẵng</item>
+        <item>Thanh Hóa</item>
+        <item>Nghệ An</item>
+        <item>Lào Cai</item>
+        <item>Yên Bái</item>
+        <item>Cần Thơ</item>
+        <item>Tuyên Quang</item>
+    </string-array>
 </resources>

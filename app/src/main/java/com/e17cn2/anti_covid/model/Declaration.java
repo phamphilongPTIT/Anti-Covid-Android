@@ -4,24 +4,35 @@ import com.google.gson.annotations.SerializedName;
 
 public class Declaration {
     private int id;
+    private String phoneNumber;
     private String noiDi;
     @SerializedName("arrival_date") private String arrivalDate;
     @SerializedName("return_date") private String returnDate;
     private String destination;
 
-    public Declaration(String  noiDi, String arrivalDate, String returnDate, String destination) {
+    public Declaration(String phoneNumber, String  noiDi, String arrivalDate, String returnDate, String destination) {
+        this.phoneNumber = phoneNumber;
         this.noiDi = noiDi;
         this.arrivalDate = arrivalDate;
         this.returnDate = returnDate;
         this.destination = destination;
     }
 
-    public Declaration(int id, String noiDi, String arrivalDate, String returnDate, String destination) {
+    public Declaration(int id,String phoneNumber, String noiDi, String arrivalDate, String returnDate, String destination) {
         this.id = id;
+        this.phoneNumber = phoneNumber;
         this.noiDi = noiDi;
         this.arrivalDate = arrivalDate;
         this.returnDate = returnDate;
         this.destination = destination;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getNoiDi() {

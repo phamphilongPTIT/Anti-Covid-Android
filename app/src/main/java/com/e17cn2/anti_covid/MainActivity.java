@@ -1,7 +1,9 @@
 package com.e17cn2.anti_covid;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -9,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,7 +21,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.e17cn2.anti_covid.model.Declaration;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity  {
             new AuthUI.IdpConfig.PhoneBuilder().build(),
             new AuthUI.IdpConfig.GoogleBuilder().build());
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +72,10 @@ public class MainActivity extends AppCompatActivity  {
                         .setAvailableProviders(providers)
                         .build(),
                 RC_SIGN_IN);
-
+        Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         viewPager=findViewById(R.id.viewPager);
         navigationView=findViewById(R.id.navigation);
         adapter=new FargmentNavigationAdapter(getSupportFragmentManager(),

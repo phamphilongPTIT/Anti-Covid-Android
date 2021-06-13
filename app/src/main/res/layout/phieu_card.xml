@@ -9,15 +9,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <TextView
             android:id="@+id/idMaKBYT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mã số KBYT: 1"
+            android:text="     Mã số KBYT: 1 - SĐT: 0989898989"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,8 +52,8 @@
 
             <TextView
                 android:id="@+id/idNgayDi"
-                android:layout_width="156dp"
-                android:layout_height="62dp"
+                android:layout_width="133dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="35dp"
                 android:text="Ngày Đi: 20/10/2021"
                 android:textSize="20sp" />

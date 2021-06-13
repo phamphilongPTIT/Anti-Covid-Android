@@ -6,83 +6,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatSpinner
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="344dp"
-        android:layout_height="260dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/anh_covid" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:text="Corona virus 2019 là gì?\n"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.195"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="344dp"
+                android:layout_height="260dp"
+                android:layout_marginTop="44dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.492"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/anh_covid" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="291dp"
-        android:layout_height="170dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="60dp"
-        android:text="Coronavirus 2019 (2019-nCoV) là một loại virus đường hô hấp mới gây bệnh viêm đường hô hấp cấp ở người và cho thấy có sự lây lan từ người sang người. Virus này được xác định trong một cuộc điều tra ổ dịch bắt nguồn từ khu chợ lớn chuyên bán hải sản và động vật ở Vũ Hán, tỉnh Hồ Bắc, Trung Quốc. 2019-nCoV là chủng virus mới chưa được xác định trước đó. Ngoài chủng coronavirus mới phát hiện này, đã có 6 chủng coronavirus khác được biết tới ngày nay có khả năng lây nhiễm ở người."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.583"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="30dp"
+                android:text="Corona virus 2019 là gì?\n"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.195"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginRight="30dp"
-        android:text="Nguồn gốc của Corona virus\n"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.269"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="275dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="60dp"
+                android:text="Coronavirus 2019 (2019-nCoV) là một loại virus đường hô hấp mới gây bệnh viêm đường hô hấp cấp ở người và cho thấy có sự lây lan từ người sang người. Virus này được xác định trong một cuộc điều tra ổ dịch bắt nguồn từ khu chợ lớn chuyên bán hải sản và động vật ở Vũ Hán, tỉnh Hồ Bắc, Trung Quốc. 2019-nCoV là chủng virus mới chưa được xác định trước đó. Ngoài chủng coronavirus mới phát hiện này, đã có 6 chủng coronavirus khác được biết tới ngày nay có khả năng lây nhiễm ở người."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.583"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="306dp"
-        android:layout_height="117dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="60dp"
-        android:text="Các cơ quan y tế và đối tác y tế đang nỗ lực để xác định nguồn gốc của 2019-nCoV. Virus corona là một betacoronavirus, giống như MERS và SAR, tất cả đều có nguồn gốc từ vật chủ từ loài dơi. Virus corona là một họ virus lớn, phổ biến ở nhiều loài động vật khác nhau bao gồm lạc đà, mèo và dơi. Phân tích cây di truyền của virus này đang được tiếp tục để biết nguồn gốc cụ thể của virus. SARS, một loại coronavirus khác xuất hiện lây nhiễm cho người, bắt nguồn loài từ cầy hương, trong khi MERS, một loại coronavirus khác lây nhiễm cho người, bắt nguồn từ lạc đà"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="30dp"
+                android:text="Nguồn gốc của Corona virus\n"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.269"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="294dp"
+                android:layout_height="246dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="60dp"
+                android:text="Các cơ quan y tế và đối tác y tế đang nỗ lực để xác định nguồn gốc của 2019-nCoV. Virus corona là một betacoronavirus, giống như MERS và SAR, tất cả đều có nguồn gốc từ vật chủ từ loài dơi. Virus corona là một họ virus lớn, phổ biến ở nhiều loài động vật khác nhau bao gồm lạc đà, mèo và dơi. Phân tích cây di truyền của virus này đang được tiếp tục để biết nguồn gốc cụ thể của virus. SARS, một loại coronavirus khác xuất hiện lây nhiễm cho người, bắt nguồn loài từ cầy hương, trong khi MERS, một loại coronavirus khác lây nhiễm cho người, bắt nguồn từ lạc đà"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
